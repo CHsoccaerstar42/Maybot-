@@ -2,3 +2,5 @@ discord.py
 flask
 python-dotenv
 youtube-dl
+pil-compat
+pytz

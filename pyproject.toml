@@ -9,3 +9,6 @@ flask = "*"
 python = "^3.7"
 python-dotenv = "*"
 youtube-dl = "^2020.1"
+pil-compat = "^1.0"
+pytz = "^2019.3"
+

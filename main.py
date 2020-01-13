@@ -9,8 +9,12 @@ import datetime
 import youtube_dl
 from random import randint as rand
 from discord.ext.commands import has_permissions
+import time
+import pytz
 
 ChristianServer = True
+
+dadmode = True
 
 client = commands.Bot(command_prefix='.')
 
@@ -46,8 +50,20 @@ async def Christian(ctx, arg):
 	else:
 		ChristianServer = False
 		await ctx.channel.send('This is no longer a christian discord server')
+
+@client.command()
+async def dad(ctx, arg):
+  global dadmode
+  if arg.lower() =='true':
+    dadmode = True
+    await ctx.channel.send('Dad Jokes Enabled')
+  else:
+    dadmode = False
+    await ctx.channel.send('Dad Jokes Disabled')
+
 @client.event
 async def on_message(message):
+	#print(datetime.datetime.now())
 	global ChristianServer
 	global counter
 	channel = str(message.channel)
@@ -84,7 +100,10 @@ async def on_message(message):
 			await message.channel.send('!p femur breaker')
   '''
 
-	if ("im" in sentence_list or "i'm" in sentence_list or 'i’m' in sentence_list) and user != 'Fissics C Bot' and sentence_list[-1] != 'im' and (sentence_list[-1] != "i'm" or sentence_list[-1] != 'im' or sentence_string != 'i’m'):
+
+
+
+	if ("im" in sentence_list or "i'm" in sentence_list or 'i’m' in sentence_list) and user != 'Fissics C Bot' and dadmode and sentence_list[-1] != 'im' and (sentence_list[-1] != "i'm" or sentence_list[-1] != 'im' or sentence_string != 'i’m'):
 		run = False
 		maydad = ''
 		for i in sentence1_list:
@@ -390,6 +409,8 @@ async def on_message(message):
 		await message.channel.send(file=discord.File('./Images/jebWinsBoot.jpg'))
 		await message.channel.send(file=discord.File('./Images/jebWinsBoot.jpg'))
 		await message.channel.send(file=discord.File('./Images/jebWinsNewZealand.jpg'))
+		await message.channel.send(file=discord.File('./Images/JebWinsMasterminds1.jpg'))
+
 
 
 	elif 'uh oh' == message.content.lower():
@@ -404,6 +425,9 @@ async def on_message(message):
 		await message.delete()
 		await message.channel.send(file=discord.File('./Images/cuckShed.png'))
 
+	elif 'jebnoon' == message.content.lower():
+		await message.channel.send(file=discord.File('./Images/kyukyuykyu.PNG'))
+
 	elif 'shutdown' == message.content.lower():
 		print(message.author.id)
 
@@ -415,12 +439,16 @@ async def on_message(message):
 		except:
 			print("EnvironmentError")
 
+	elif 'jeb wins masterminds' == message.content.lower():
+		await message.channel.send(file=discord.File('./Images/JebWinsMasterminds1.jpg'))
+
 	elif 'jeb' in message.content.lower() and message.channel.id != 660244746865737733:
-		pics = ['./Images/jebWins.jpg', './Images/jebWinsFrance.jpg', './Images/Jeb Wins Catalan Edition.jpeg', './Images/jebWinsUniverse.jpeg', './Images/jebWinsWorld.jpg', './Images/jebWinsCanada.png', './Images/jebWinsRussia.png', './Images/jebWinsTheNetherlands.png', './Images/jebWinsCongress.png', './Images/jebWinsBoot.jpg', './Images/jebWinsNewZealand.jpg']
+		pics = ['./Images/jebWins.jpg', './Images/jebWinsFrance.jpg', './Images/Jeb Wins Catalan Edition.jpeg', './Images/jebWinsUniverse.jpeg', './Images/jebWinsWorld.jpg', './Images/jebWinsCanada.png', './Images/jebWinsRussia.png', './Images/jebWinsTheNetherlands.png', './Images/jebWinsCongress.png', './Images/jebWinsBoot.jpg', './Images/jebWinsNewZealand.jpg', './Images/JebWinsMasterminds.jpg']
 		num = rand(0, 10)
 		await message.channel.send(
 		    file=discord.File(pics[num]))
 		
+  
 	if sentence_list[0] == ('maybot_say') and user != 'Fissics C Bot':
 		await message.delete()
 		string = ''
@@ -518,6 +546,14 @@ async def on_message(message):
 		newMessage = newMessage.replace('dick', 'Richard')
 		nono = True
 
+	if 'sex' in newMessage and ChristianServer:
+		newMessage = newMessage.replace('sex','gender')
+		nono = True
+  
+	if 'whore' in newMessage and ChristianServer:
+		newMessage = newMessage.replace('whore','harlot')
+		nono = True
+
 
 	if 'retard' in newMessage and ChristianServer:
 		newMessage = newMessage.replace('retarded', 'person with lower mental capacity, which is completely fine')
@@ -551,6 +587,22 @@ async def on_message(message):
 
 	if 'cunt' in newMessage and ChristianServer:
 		newMessage = newMessage.replace('cunt', 'cunnot')
+		nono = True
+
+	if 'pussy' in newMessage and ChristianServer:
+		newMessage = newMessage.replace('pussy', 'kitten')
+		nono = True
+
+	if 'tit' in newMessage and ChristianServer:
+		newMessage = newMessage.replace('tit', 'bosom')
+		nono = True
+
+	if 'nigger' in newMessage and ChristianServer:
+		newMessage = newMessage.replace('nigger', 'well respected person of color')
+		nono = True
+
+	if 'nigga' in newMessage and ChristianServer:
+		newMessage = newMessage.replace('nigga', "well respected person of colo'")
 		nono = True
 
 	if 'slut' in newMessage and ChristianServer:
@@ -673,43 +725,86 @@ async def on_message(message):
 
 	if 'good evening' in message.content.lower() and user != 'Fissics C Bot':
 		await message.channel.send('Good evening ' + nick)
-'''
-	file = open('Message Date.txt', 'r')
-	contents = file.readlines()
-	file.close()
-	found = False
-	for i in contents:
-		if user in i:
-			pos = contents.index(i)
-			i.replace(user, '')
-			if i != str(date.today()):
-				await message.channel.send(user + ' has earned a gold coin')
-				contents.pop(pos)
+	if 'alex' in message.content.lower() and user != 'Fissics C Bot':
+		await message.channel.send('Alex is a god')
+
+	rng = rand(1, 20)
+	if rng == 1:
+		date_NY = ''
+		date_time = str(datetime.datetime.now(tz=pytz.timezone('America/New_York')))
+		for i in date_time:
+			if i != ' ':
+				date_NY += i
+			else:
+				break
+		count = 0
+		file = open('Message Date.txt', 'r')
+		contents = file.readlines()
+		file.close()
+		found = False
+		for i in contents:
+			if user in i:
+				pos = contents.index(i)
+				date_msg = i.replace(user + ' ', '')
+				date_msg = date_msg.replace('\n', '')
+				if i == user + ' ' + date_NY + '\n':
+					count += 1
+					#await message.channel.send(user + ' has earned a gold coin')
+					#time.sleep(5)
+					#await message.delete()
+				#contents.pop(pos)
 				file = open('Message Date.txt', 'w').close()
 
 				file = open('Message Date.txt', 'a')
 				for i in contents:
 					file.write(i)
-					file.write('\n')
+				#file.write('\n')
 				file.close()
-				file = open('Message Date.txt', 'a')
-				file.write(user + str(date.today()))
+				#file = open('Message Date.txt', 'a')
+				#file.write(user + ' ' + str(date.today()))
+					#file.write('\n')
+				#file.close()
+		if count >= 5 and str(message.author) != 'Fissics C Bot#9029':  
+			found = True
+		print(found)
+
+		print(rng)
+		if not found and rng == 1:
+			#await message.channel.send(user + ' has earned a gold coin')
+			file = open('Message Date.txt', 'w').close()
+			file = open('Message Date.txt', 'a')
+			for i in contents:
+				file.write(i)
+			#file.write('\n')
+			file.close()
+			file = open('Message Date.txt', 'a')
+			file.write(user + ' ' + date_NY)
+			file.write('\n')
+			file.close()
+			await message.channel.send(user + ' has earned a gold coin')
+			file = open('Inventories.txt', 'r')
+			content_inv = file.readlines()
+			file.close()
+			try:
+				pos_inv = content_inv.index(str(message.author) + '\n')
+			except:
+				file = open('Inventories.txt', 'a')
+				file.write('\n')
+				file.write(str(message.author) + '\n')
 				file.write('\n')
 				file.close()
-			found = True
-	if not found:
-		await message.channel.send(user + ' has earned a gold coin')
-		file = open('Message Date.txt', 'w').close()
-		file = open('Message Date.txt', 'a')
-		for i in contents:
-			file.write(i)
-			file.write('\n')
-		file.close()
-		file = open('Message Date.txt', 'a')
-		file.write(user + str(date.today()))
-		file.write('\n')
-		file.close()
-'''		
+				pos_inv = content_inv.index(str(message.author) + '\n')
+			print(pos_inv)
+			content_inv.insert(pos_inv + 1, 'GOLD COIN\n')
+			file = open('Inventories.txt', 'r+')
+			file.truncate(0)
+			file.close()
+			file = open('Inventories.txt', 'a')
+			for i in content_inv:
+				file.write(i)
+			file.close()
+				
+
 
 @client.command()
 async def isTylerDum(ctx):
@@ -753,22 +848,37 @@ async def suggest(ctx):
 	file.close()
 	await ctx.channel.send('Thank you for the suggestion')
 
-@client.command()
-async def inventory(ctx):
+@client.command(aliases=['inv'])
+async def inventory(ctx, member: discord.Member):
+	target = str(member)
+	'''
+	tempList = []
+	tempList1 = []
+	tempList1 = ctx.message.content.split()
+	tempList.append(tempList1[0])
+	tempList.append(str(member))
+	print(tempList)
+	print(str(member))
+	if len(tempList) == 2:
+		tempUser = tempList[1]
+		print('test')
+		if str(member)[0] == '@':
+			target = tempList[1]
+	'''
+	print(target)
 	await ctx.message.delete()
 	file = open('Inventories.txt', 'r')
 	contents = file.readlines()
 	file.close()
 	try:
-		pos = contents.index(str(ctx.message.author.name) + '#' + str(ctx.message.author.discriminator) + '\n')
+		pos = contents.index(target + '\n')
 	except:
 		file = open('Inventories.txt', 'a')
 		file.write('\n')
-		file.write(str(ctx.message.author.name) + '#' + str(ctx.message.author.discriminator) + '\n')
+		file.write(target + '\n')
 		file.write('\n')
 		file.close()
-		pos = contents.index(str(ctx.message.author.name) + '#' + str(ctx.message.author.discriminator) + '\n')
-	print(pos)
+		pos = contents.index(target + '\n')
 
 	inv = []
 	while contents[pos] != '\n':
@@ -776,7 +886,6 @@ async def inventory(ctx):
 		inv.append(term)
 		pos += 1
 	inv.pop(0)
-	print(inv)
 	num_coin = 0
 	num_bcram = 0
 	num_vcram = 0
@@ -791,19 +900,25 @@ async def inventory(ctx):
 			num_vcram += 1
 		if i == 'RASPBERRY CRAM':
 			num_rcram += 1
-		if i == 'ANDYS TRUST':
+		if i == "ANDY'S TRUST":
 			num_andys_trust += 1
 	print(num_coin)
-	if ctx.message.author.display_name != 'None':
+	if member.nick != None:
 		nickname = True
-		nick = str(ctx.message.author.display_name)
+		nick = str(member.nick)
 	else:
 		nickname = False
-		nick = str(ctx.message.author.name)
+		nick = ''
+		for i in str(member):
+			if i != '#':
+				nick += i
+			else:
+				break
+	print(nick)
 		
 	embed = discord.Embed(
 		colour=discord.Colour(0x363940),
-		title=nick + "'s inventory"
+		title=str(nick) + "'s inventory"
 		#description='This is a test'
    )
 #	if nick != 'None':
@@ -814,8 +929,9 @@ async def inventory(ctx):
 	embed.add_field(name='Berry Cram', value=num_bcram, inline=True)
 	embed.add_field(name='Very Berry Cram', value=num_vcram, inline=True)
 	embed.add_field(name='Raspberry Cram', value=num_rcram, inline=True)
-	if num_andys_trust != 0:
-		embed.add_field(name="Andy's Trust", value=num_andys_trust, inline=True)
+	# This works
+  # if num_andys_trust != 0:
+	embed.add_field(name="Andy's Trust", value=num_andys_trust, inline=True)
 
 	await ctx.message.channel.send(embed=embed)
 
